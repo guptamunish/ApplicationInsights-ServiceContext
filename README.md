@@ -19,7 +19,7 @@ using Microsoft.ApplicationInsights.ServiceContext;
     }
 ```
 
-See ASP.NET Core [example](samples\AspNetCore\Startup.cs#L22)
+See ASP.NET Core [example](samples/AspNetCore/Startup.cs#L22)
 
 ### Console Application
 
@@ -31,4 +31,4 @@ Add `ServiceContextTelemetryIntitializer` to the `TelemetryConfigration`. You ma
     client.TrackTrace("Hello World!");
 ```
 
-See Console App [example](samples\ConsoleApp\Program.cs#L11)
+See Console App [example](samples/ConsoleApp/Program.cs#L11)
