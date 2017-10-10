@@ -79,11 +79,11 @@
   </ItemGroup>
   <Target Name="CopySignedAssembliesBack" Condition="'$(SignType)'!=''" AfterTargets="SignFiles">
     <!--Full framework assemblies-->
-    <Copy SourceFiles="$(OutputPath)\full\Microsoft.ApplicationInsights.ServiceContext.dll" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\BWS\$(Configuration)\net451" />
-    <Copy SourceFiles="$(OutputPath)\full\Microsoft.ApplicationInsights.ServiceContext.pdb" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\BWS\$(Configuration)\net451" />
+    <Copy SourceFiles="$(OutputPath)\full\Microsoft.ApplicationInsights.ServiceContext.dll" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\$(Configuration)\net451" />
+    <Copy SourceFiles="$(OutputPath)\full\Microsoft.ApplicationInsights.ServiceContext.pdb" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\$(Configuration)\net451" />
     <!--.Net core assemblies-->
-    <Copy SourceFiles="$(OutputPath)\core\Microsoft.ApplicationInsights.ServiceContext.dll" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\BWS\$(Configuration)\netstandard1.3" />
-    <Copy SourceFiles="$(OutputPath)\core\Microsoft.ApplicationInsights.ServiceContext.pdb" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\BWS\$(Configuration)\netstandard1.3" />
+    <Copy SourceFiles="$(OutputPath)\core\Microsoft.ApplicationInsights.ServiceContext.dll" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\$(Configuration)\netstandard1.3" />
+    <Copy SourceFiles="$(OutputPath)\core\Microsoft.ApplicationInsights.ServiceContext.pdb" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ServiceContext\bin\$(Configuration)\netstandard1.3" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
