@@ -20,11 +20,11 @@ namespace Microsoft.ApplicationInsights.ServiceContext
 
         private readonly string name;
         private readonly string version;
-        private readonly IDictionary<string, string> context;
+        private readonly IReadOnlyDictionary<string, string> context;
 
         public ServiceContextTelemetryIntitializer() : this(
-            Environment.GetEnvironmentVariable(NameEnvironmentVariable),
-            Environment.GetEnvironmentVariable(VersionEnvironmentVariable),
+            GetEnvironmentVariable(NameEnvironmentVariable),
+            GetEnvironmentVariable(VersionEnvironmentVariable),
             Environment.GetEnvironmentVariables())
         {
         }
@@ -39,12 +39,12 @@ namespace Microsoft.ApplicationInsights.ServiceContext
         public void Initialize(ITelemetry telemetry)
         {
             // We assume that if env variable is set explicitly, it has higher priority than properties set on telemetry by SDK
-            if (!string.IsNullOrEmpty(version))
+            if (version != null)
             {
                 telemetry.Context.Component.Version = version;
             }
 
-            if (!string.IsNullOrEmpty(name))
+            if (name != null)
             {
                 telemetry.Context.Cloud.RoleName = name;
             }
@@ -56,9 +56,9 @@ namespace Microsoft.ApplicationInsights.ServiceContext
             }
         }
 
-        private IDictionary<string, string> ParseContext(IDictionary environment)
+        private IReadOnlyDictionary<string, string> ParseContext(IDictionary environment)
         {
-            IDictionary<string,string> ctx = new Dictionary<string, string>();
+            var ctx = new Dictionary<string, string>();
 
             if (environment != null)
             {
@@ -77,6 +77,12 @@ namespace Microsoft.ApplicationInsights.ServiceContext
             }
 
             return ctx;
+        }
+
+        private static string GetEnvironmentVariable(string name)
+        {
+            var value = Environment.GetEnvironmentVariable(name);
+            return string.IsNullOrEmpty(value) ? null : value;
         }
     }
 }
